@@ -30,11 +30,11 @@ inquirer.prompt([
         message: 'Select a license for your project.',
         name: 'license',
         choices: [
-            { value: 'Apache' },   //Apache 2.0 License
+            { value: 'Apache' },    //Apache 2.0 License
             { value: 'BSD3' },  //BSD 3-Clause License
             { value: 'LGPL' },  //GNU LGPL v3
-            { value: 'MIT' },  //The MIT License
-            { value: 'MPL' }, //Mozilla Public License 2.0
+            { value: 'MIT' },   //The MIT License
+            { value: 'MPL' },   //Mozilla Public License 2.0
             { value: 'None' }, 
         ]
     },

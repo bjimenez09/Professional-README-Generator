@@ -2,17 +2,22 @@
 
   ## Licensing:
 
+  ![Badge](https://img.shields.io/badge/License-MIT-blue.svg)
+
   ## Table of Contents 
+
   - [Description](#description)
   - [Installation](#installation)
   - [Usage](#usage)
   - [Additional Info](#additional-info)
 
   ## Visual Presentation
-  ![Professional Readme Generator Demo]
+
+  ![Professional Readme Generator Demo](./utils/GeneratedREADME.gif)
 
   ## Description:
-  The above gif is a demonstration of how this 'deployed' application works. Created in effort to swiftly generate README files that use a consistant format. This took awhile for me to find all the missing pieces to get something working, it's weird yet awesome how something so seemingly simple took many hours of testing. Please enjoy the generator!
+
+  The above gif is a demonstration of how this 'deployed' application works. 
   
     GIVEN a command-line application that accepts user input
     WHEN I am prompted for information about my application repository
@@ -31,14 +36,17 @@
     THEN I am taken to the corresponding section of the README
 
   ## Installation:
+
   - Download it through Github
   - Ensure inquirer is installed
 
   ## Usage:
+
   - Open terminal
   - Type 'node index.js'
   - Answer the prompts that follow
   - On success a README.md will be generated.
 
   ## Additional Info:
-  - Github: [bjimenez09](https://github.com/bjimenez09`)
+
+  - Github: [bjimenez09](https://github.com/bjimenez09)

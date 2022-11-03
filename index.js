@@ -1,147 +1,78 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateMarkdown = require('./src/generateMarkdown.js')
+const generateMarkdown = require('./utils/generateMarkdown');
 
-// Array of questions to ask the user
-const questions = [
-    // Project name
+//const questions = [];
+
+inquirer.prompt([
     {
         type: 'input',
+        message: 'Please enter repository name: ',
         name: 'title',
-        message: 'What is the title of the project? (Required)',
-        validate: titleInput => {
-            if (titleInput) {
-                return true;
-            } else {
-                console.log('You need to enter a title to continue!');
-                return false;
-            }
-        }
     },
-    // Description of project
     {
         type: 'input',
+        message: 'What is the description of your repository? (Required)',
         name: 'description',
-        message: 'Provide a description of the project (Required)',
-        validate: descriptionInput => {
-            if (descriptionInput) {
-                return true;
-            } else {
-                console.log('You need to provide a project description!');
-                return false;
-            }
-        }
     },
-    // Installation Instructions
     {
         type: 'input',
+        message: 'What are the steps required to install your project?',
         name: 'installation',
-        message: 'How do you install your project? (Required)',
-        validate: installationInput => {
-            if (installationInput) {
-                return true;
-            } else {
-                console.log('You need to provide installation info to continue!');
-                return false;
-            }
-        }
     },
-    // Usage Information
     {
         type: 'input',
+        message: 'Please provide instructions for using your application. It is recommended to add descriptive images/vidoes/gifs.',
         name: 'usage',
-        message: 'How do you use this project? (Required)',
-        validate: usageInput => {
-            if (usageInput) {
-                return true;
-            } else {
-                console.log('You need to provide information on how to use project!');
-                return false;
-            }
-        }
     },
-    // Contribution Guidlines
+    {
+        type: 'list',
+        message: 'Select a license for your project.',
+        name: 'license',
+        choices: [
+            { value: 'Apache' },   //Apache 2.0 License
+            { value: 'BSD3' },  //BSD 3-Clause License
+            { value: 'LGPL' },  //GNU LGPL v3
+            { value: 'MIT' },  //The MIT License
+            { value: 'MPL' }, //Mozilla Public License 2.0
+            { value: 'None' }, 
+        ]
+    },
     {
         type: 'input',
+        message: 'Explain how other developers may contribute to your project.',
         name: 'contribution',
-        message: 'How should people contribute to this project? (Required)',
-        validate: contributionInput => {
-            if (contributionInput) {
-                return true;
-            } else {
-                console.log('You need to provide information on how to contribute to the project!');
-                return false;
-            }
-        }
     },
-    // Test Instructions 
     {
         type: 'input',
-        name: 'testing',
-        message: 'How do you test this project? (Required)',
-        validate: testingInput => {
-            if (testingInput) {
-                return true;
-            } else {
-                console.log('You need to describe how to test this project!');
-                return false;
-            }
-        }
+        message: 'Please explain how users may test your application.',
+        name: 'test',
     },
-    // License Options
-    {
-        type: 'checkbox',
-        name: 'licensing',
-        message: 'Choose a license for your project (Required)',
-        choices: ['Apache', 'MIT', 'Mozilla-Public', 'GNU-General-Public', 'Common-Development-and Distribution', 'None'],
-        validate: licensingInput => {
-            if (licensingInput) {
-                return true;
-            } else {
-                console.log('You must pick a license for the project!');
-                return false;
-            }
-        }
-    },
-    // Github Username
     {
         type: 'input',
-        name: 'github',
-        message: 'Enter your GitHub Username (Required)',
-        validate: githubInput => {
-            if (githubInput) {
-                return true;
-            } else {
-                console.log('Please enter your GitHub username!');
-                return false;
-            }
-        }
+        message: 'Please list instructions for those who wish to contact you.',
+        name: 'questions',
     },
-    // Email Address
     {
-        type: 'input',
-        name: 'email',
-        message: 'Would you like to include your email?',
+        type: "input",
+        message: "Enter your GitHub username: ",
+        name: "username",
     },
-];
+    {
+        type: "input",
+        message: "Enter your email address: ",
+        name: "email",
+    }
 
-// Function to write README file
-function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, (err) => {
-        if (err)
-            throw err;
-        console.log('Success! Information transferred to the README!')
-    });
-};
+])
+    .then((data) => {
+        const filename = data.title.replace(' ', "").toLowerCase()
+        fs.writeFile(`${filename}.md`, generateMarkdown(data), (err) =>
+            err ? console.error(err) : console.log("Thank you! The current data is being generated into your README.md"))
+    })
 
-// Function to initialize app
-function init() {
-    inquirer.prompt(questions)
-    .then(function (userInput) {
-        console.log(userInput)
-        writeToFile("README.md", generateMarkdown(userInput));
-    });
-};
+
+function init() { }
 
 // Function call to initialize app
 init();

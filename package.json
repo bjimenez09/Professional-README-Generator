@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "inquirer": "^9.1.4"
+  },
+  "name": "readme-generator",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bjimenez09/README-Generator.git"
+  },
+  "author": "Brandon Jimenez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bjimenez09/README-Generator/issues"
+  },
+  "homepage": "https://github.com/bjimenez09/README-Generator#readme"
+}
